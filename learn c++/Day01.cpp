@@ -1,6 +1,7 @@
 /*
 #include<iostream>
 using namespace std;
+
 int main(){
     cout <<"Hello World"<<endl;
     return 0;
@@ -8,12 +9,8 @@ int main(){
 */
 
 /*
-C++中 "\n" 与 endl 的区别是什么?
-
-"\n" 表示一个字符串，只有一个数据是回车符。
-
-'\n' 表示一个字符。
-
+?C++中 "\n" 与 endl 的区别是什么?
+ 
 这两个在输出上是一样的！
 
 关于 endl:
@@ -64,10 +61,11 @@ std::cout << '\n'; std::fflush(stdout);
 
 对于类的设计者来说，头文件就像他们和类的使用者的一个合同，编译器会强化这一合同，它会要求你在使用这些类里的函数或结构时必须要声明
 */
-
+/*
 //*如果想要显示多行文本
 #include<iostream>
 using namespace std;
+
 int main(){
     cout <<"..............\n"
          <<"Hello World ! \n"
@@ -75,7 +73,63 @@ int main(){
          <<"..............\n";
     return 0;
 }
-
+*/
 //*!真正的开发过程中， 尽量避免使用 using namespace std; 等直接引入整个命名空间，否则会因为命名空间污染导致很多不必要的问题， 比如自己写的某个函数，名称正好和 std 中的一样， 编译器会不知道使用哪一个， 引起编译报错.
 //*建议使用:
 //*std::cout << "Hello World" << std::endl;等直接由命名空间组合起来的全称
+
+#include<iostream>  
+#include <limits>
+ 
+using namespace std;  
+  
+int main()  
+{  
+    cout << "type: \t\t" << "************size**************"<< endl;  
+    cout << "bool: \t\t" << "所占字节数：" << sizeof(bool);  
+    cout << "\t最大值：" << (numeric_limits<bool>::max)();  
+    cout << "\t\t最小值：" << (numeric_limits<bool>::min)() << endl;  
+    cout << "char: \t\t" << "所占字节数：" << sizeof(char);  
+    cout << "\t最大值：" << (numeric_limits<char>::max)();  
+    cout << "\t\t最小值：" << (numeric_limits<char>::min)() << endl;  
+    cout << "signed char: \t" << "所占字节数：" << sizeof(signed char);  
+    cout << "\t最大值：" << (numeric_limits<signed char>::max)();  
+    cout << "\t\t最小值：" << (numeric_limits<signed char>::min)() << endl;  
+    cout << "unsigned char: \t" << "所占字节数：" << sizeof(unsigned char);  
+    cout << "\t最大值：" << (numeric_limits<unsigned char>::max)();  
+    cout << "\t\t最小值：" << (numeric_limits<unsigned char>::min)() << endl;  
+    cout << "wchar_t: \t" << "所占字节数：" << sizeof(wchar_t);  
+    cout << "\t最大值：" << (numeric_limits<wchar_t>::max)();  
+    cout << "\t\t最小值：" << (numeric_limits<wchar_t>::min)() << endl;  
+    cout << "short: \t\t" << "所占字节数：" << sizeof(short);  
+    cout << "\t最大值：" << (numeric_limits<short>::max)();  
+    cout << "\t\t最小值：" << (numeric_limits<short>::min)() << endl;  
+    cout << "int: \t\t" << "所占字节数：" << sizeof(int);  
+    cout << "\t最大值：" << (numeric_limits<int>::max)();  
+    cout << "\t最小值：" << (numeric_limits<int>::min)() << endl;  
+    cout << "unsigned: \t" << "所占字节数：" << sizeof(unsigned);  
+    cout << "\t最大值：" << (numeric_limits<unsigned>::max)();  
+    cout << "\t最小值：" << (numeric_limits<unsigned>::min)() << endl;  
+    cout << "long: \t\t" << "所占字节数：" << sizeof(long);  
+    cout << "\t最大值：" << (numeric_limits<long>::max)();  
+    cout << "\t最小值：" << (numeric_limits<long>::min)() << endl;  
+    cout << "unsigned long: \t" << "所占字节数：" << sizeof(unsigned long);  
+    cout << "\t最大值：" << (numeric_limits<unsigned long>::max)();  
+    cout << "\t最小值：" << (numeric_limits<unsigned long>::min)() << endl;  
+    cout << "double: \t" << "所占字节数：" << sizeof(double);  
+    cout << "\t最大值：" << (numeric_limits<double>::max)();  
+    cout << "\t最小值：" << (numeric_limits<double>::min)() << endl;  
+    cout << "long double: \t" << "所占字节数：" << sizeof(long double);  
+    cout << "\t最大值：" << (numeric_limits<long double>::max)();  
+    cout << "\t最小值：" << (numeric_limits<long double>::min)() << endl;  
+    cout << "float: \t\t" << "所占字节数：" << sizeof(float);  
+    cout << "\t最大值：" << (numeric_limits<float>::max)();  
+    cout << "\t最小值：" << (numeric_limits<float>::min)() << endl;  
+    cout << "size_t: \t" << "所占字节数：" << sizeof(size_t);  
+    cout << "\t最大值：" << (numeric_limits<size_t>::max)();  
+    cout << "\t最小值：" << (numeric_limits<size_t>::min)() << endl;  
+    cout << "string: \t" << "所占字节数：" << sizeof(string) << endl;  
+    // << "\t最大值：" << (numeric_limits<string>::max)() << "\t最小值：" << (numeric_limits<string>::min)() << endl;  
+    cout << "type: \t\t" << "************size**************"<< endl;  
+    return 0;  
+}
