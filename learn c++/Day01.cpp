@@ -78,6 +78,7 @@ int main(){
 //*建议使用:
 //*std::cout << "Hello World" << std::endl;等直接由命名空间组合起来的全称
 
+/*
 #include<iostream>  
 #include <limits>
  
@@ -133,3 +134,136 @@ int main()
     cout << "type: \t\t" << "************size**************"<< endl;  
     return 0;  
 }
+*/
+
+
+/*
+size_t 在 C 语言中就有了。
+
+它是一种 整型 类型，里面保存的是一个整数，就像 int, long 那样。这种整数用来记录一个大小(size)。size_t 的全称应该是 size type，就是说 一种用来记录大小的数据类型。
+
+通常我们用 sizeof(XXX) 操作，这个操作所得到的结果就是 size_t 类型。
+
+因为 size_t 类型的数据其实是保存了一个整数，所以它也可以做加减乘除，也可以转化为 int 并赋值给 int 类型的变量。
+
+类似的还有 wchar_t, ptrdiff_t。
+
+wchar_t 就是 wide char type， 一种用来记录一个宽字符的数据类型 。
+
+ptrdiff_t 就是 pointer difference type， 一种用来记录两个指针之间的距离的数据类型 。
+
+通常，size_t 和 ptrdiff_t 都是用 typedef 来实现的。你可能在某个头文件里面找到类似的语句：
+
+typedef unsigned int size_t;
+而 wchar_t 则稍有不同。在一些旧的编译器中，wchar_t 也可能是用 typedef 来实现，但是新的标准中 wchar_t 已经是 C/C++ 语言的关键字，wchar_t 类型的地位已经和 char, int 的地位等同了。
+
+在标准 C/C++ 的语法中，只有 int float char bool 等基本的数据类型，至于 size_t, 或 size_type 都是以后的编程人员为了方便记忆所定义的一些便于理解的由基本数据类型的变体类型。
+例如：typedef int size_t; 定义了 size_t 为整型。
+
+int i;                   // 定义一个 int 类型的变量 i
+size_t size=sizeof(i);   // 用 sizeof 操作得到变量i的类型的大小
+// 这是一个size_t类型的值
+// 可以用来对一个size_t类型的变量做初始化
+
+i=(int)size;             // size_t 类型的值可以转化为 int 类型的值
+char c='a';              // c 保存了字符 a，占一个字节
+wchar_t wc=L'a';         // wc 保存了宽字符 a，占两个字节
+// 注意 'a' 表示字符 a，L'a' 表示宽字符 a
+
+int arr[]={1,2,3,4,5};   // 定义一个数组
+int *p1=&arr[0];         // 取得数组中元素的地址，赋值给指针
+int *p2=&arr[3];
+ptrdiff_t diff=p2-p1;    // 指针的减法可以计算两个指针之间相隔的元素个数
+// 所得结果是一个 ptrdiff_t 类型
+
+i=(int)diff;             // ptrdiff_t 类型的值可以转化为 int 类型的值
+*/
+
+
+/* 
+
+
+//*每个枚举元素在声明时被分配一个整型值，默认从 0 开始，逐个加 1。
+
+/*
+#include <iostream>
+using namespace std;
+int main()
+{
+  enum Weekend{Zero,One,Two,Three,Four};
+  int a,b,c,d,e;
+  a=Zero;
+  b=One;
+  c=Two;
+  d=Three;
+  e=Four;
+  cout<<a<<","<<b<<","<<c<<","<<d<<","<<e<<endl;  // 0,1,2,3,4
+  return 0;
+}
+*/
+
+//*也可以在定义枚举类型时对枚举元素赋值，此时，赋值的枚举值为所赋的值，而其他没有赋值的枚举值在为前一个枚举值加 1。
+
+/*
+#include <iostream>
+using namespace std;
+int main()
+{
+  enum Weekend{Zero,One,Two=555,Three,Four};
+  int a,b,c,d,e;
+  a=Zero;
+  b=One;
+  c=Two;
+  d=Three;
+  e=Four;
+  cout<<a<<","<<b<<","<<c<<","<<d<<","<<e<<endl;  //0,1,555,556,557
+  return 0;
+}
+*/
+
+/*
+*关于 typedef 的几点说明：
+
+typedef 可以声明各种类型名，但不能用来定义变量。用 typedef 可以声明数组类型、字符串类型，使用比较方便。
+用typedef只是对已经存在的类型增加一个类型名，而没有创造新的类型。
+当在不同源文件中用到同一类型数据（尤其是像数组、指针、结构体、共用体等类型数据）时，常用 typedef 声明一些数据类型，把它们单独放在一个头文件中，然后在需要用到它们的文件中用 ＃include 命令把它们包含进来，以提高编程效率。
+使用 typedef 有利于程序的通用与移植。有时程序会依赖于硬件特性，用 typedef 便于移植
+*/
+
+/*
+typedef int Int;
+当然，也可以使用 using：
+
+using Int=int;
+可以看到，第二种可读性更高。
+
+另外，using 在模板环境中会更加强大。
+
+假设有一个模板参数是 int 的类 grid，那么可以这么做：
+
+using grid1=grid<1>;
+那要声明一个指向返回 void，有一个 int 参数的函数的函数指针呢？
+
+或许可以使用 typedef：
+
+typedef void(*f1)(int);
+可以看到，可读性很低，那使用 using 呢？
+
+using f1=void(*)(int);
+使用 using 明显更好理解：
+
+所以，始终优先使用 using。
+
+那如果将函数指针作参数呢？
+
+void func(void(*f1)(int)){
+//...
+}
+这无法使用 using 完成。
+
+但是，使用 <functional> 中的 function 可以更好地完成任务：
+void func(function<void(int)>f1){
+//...
+}
+所以，尽量不去使用 typedef。
+*/
