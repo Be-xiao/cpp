@@ -78,7 +78,7 @@ int main(){
 //*建议使用:
 //*std::cout << "Hello World" << std::endl;等直接由命名空间组合起来的全称
 
-/*
+
 #include<iostream>  
 #include <limits>
  
@@ -134,7 +134,7 @@ int main()
     cout << "type: \t\t" << "************size**************"<< endl;  
     return 0;  
 }
-*/
+
 
 
 /*
